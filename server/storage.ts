@@ -130,6 +130,7 @@ export class MemStorage implements IStorage {
       ...insertTransaction,
       id,
       date: new Date(),
+      gift: insertTransaction.gift === undefined ? null : insertTransaction.gift,
     };
     this.transactions.set(id, transaction);
     
@@ -348,6 +349,7 @@ export class FirebaseStorage implements IStorage {
         ...insertTransaction,
         id,
         date: new Date(),
+        gift: insertTransaction.gift === undefined ? null : insertTransaction.gift,
       };
       
       await db.collection(COLLECTIONS.TRANSACTIONS).doc(id.toString()).set({
